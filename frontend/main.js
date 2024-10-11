@@ -2,14 +2,14 @@ window.addEventListener('DOMContentLoaded',(event) => { //When the content is lo
     getVisitCount();
 })
 
-const functionApi = '';
+const functionApi = 'http://localhost:7071/api/GetResumeCounter';
 
 const getVisitCount = () => {
     let count = 30; // This variable is has a value but only for the begining
 
     fetch(functionApi).then(response => {
         return response.json()
-    }).then(response => {
+    }).then(response =>{
 
         console.log("Website called function API.");
         count = response.count; // the count variable are going to store the value that json response 
