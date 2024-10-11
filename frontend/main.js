@@ -13,7 +13,7 @@ const getVisitCount = () => {
 
         console.log("Website called function API.");
         count = response.count; // the count variable are going to store the value that json response 
-        document.getElementById("counter").innetText = count; // Then go into thge document, find the counter ID , take the innertext and change by the new value from the response
+        document.getElementById("counter").innerText = count; // Then go into thge document, find the counter ID , take the innertext and change by the new value from the response
 
     }).catch(function(error){
         console.log(error);
