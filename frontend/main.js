@@ -2,12 +2,13 @@ window.addEventListener('DOMContentLoaded',(event) => { //When the content is lo
     getVisitCount();
 })
 
-const functionApi = 'http://localhost:7071/api/GetResumeCounter';
+const functionApiUrl = 'https://getresumecounterweb.azurewebsites.net/api/GetResumeCounter?code=7gVzmgzs2j85aLXc3erxe9TpsNVXlFqolML1jIxRKBXuAzFuSt58YQ%3D%3D';
+const localFunctionApi = 'http://localhost:7071/api/GetResumeCounter';
 
 const getVisitCount = () => {
     let count = 30; // This variable is has a value but only for the begining
 
-    fetch(functionApi).then(response => {
+    fetch(functionApiUrl).then(response => {
         return response.json()
     }).then(response =>{
 
