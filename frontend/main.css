@@ -1,0 +1,172 @@
+/* === Frappe Theme (Catppuccin) ===
+ * text: #c6d0f5
+ * secondary: #8CAAEE
+ * background: #303446
+ * accents: #f2d5cf, #B5BFE2, #babbf1
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #303446;
+  color: #c6d0f5;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === Mac Window Frame === */
+.mac-window {
+  width: 100%;
+  max-width: 1400px;
+  background: #1e1e2e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid #babbf1;
+}
+
+.mac-header {
+  background: #2e2e38;
+  padding: 10px 15px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #444;
+}
+
+.mac-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.mac-btn.red { background: #ff5f57; }
+.mac-btn.yellow { background: #ffbd2e; }
+.mac-btn.green { background: #28c940; }
+
+.mac-content {
+  padding: 2rem;
+}
+
+/* === Banner === */
+.banner-text {
+  margin-bottom: 2rem;
+  /* text-align: center; */
+}
+.banner-text h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f2d5cf;
+}
+
+/* === Links === */
+a {
+  color: #f2d5cf;
+  text-decoration: underline;
+}
+a:hover {
+  color: #8CAAEE;
+}
+
+/* === Headings === */
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #B5BFE2;
+}
+
+/* === Paragraphs === */
+p {
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: #c6d0f5;
+}
+
+/* === Social Links === */
+ul.social {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+ul.social li {
+  margin-bottom: 0.5rem;
+}
+
+ul.social a {
+  color: #a6d189;
+  /* font-weight: bold; */
+  text-decoration: none;
+}
+
+ul.social a:hover {
+  color: #8CAAEE;
+}
+
+/* === Footer === */
+footer,
+.mac-content > p:last-of-type {
+  margin-top: 2rem;
+  color: #B5BFE2;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* === Animations === */
+.output {
+  width: 100%;
+  max-width: 80ch;
+  animation: fade 5s;
+}
+
+.typeme {
+  width: 30ch;
+  animation: typing 2s steps(25), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #f2d5cf;
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 30ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* === Utility Classes === */
+.text-secondary { color: #8CAAEE; }
+.text-background { color: #B5BFE2; }
+.cursor { color: #f2d5cf; }
+
+/* === Responsive Text Scaling === */
+@media (min-width: 600px) {
+  body {
+    font-size: 1.125rem;
+  }
+  .banner-text h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+}
