@@ -1,0 +1,158 @@
+/* Global page setup */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* Toolbar positioning */
+#toolbar {
+  position: fixed;
+  top: 20px;   /* move down — tweak as needed */
+  left: 20px; /* move right — tweak as needed */
+  z-index: 1000;
+  font-family: monospace;
+  width: 220px;
+}
+
+/* Button styling inside the toolbar */
+#toolbar button {
+  background-color: white;
+  color: black;
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+#toolbar button:hover {
+  background-color: #f0f0f0;
+  /* color: #b23a1f; */
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#toolbar button:active {
+  transform: scale(0.97);
+}
+
+/* -------------------------
+   Event Card Enhancements
+--------------------------*/
+
+.event-card-button {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px;
+  overflow: visible;
+  position: relative;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.events-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.events-header p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.event-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.event-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  cursor: pointer;
+  transition: 
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+
+.event-card:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2),
+              0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------------
+   Shadow Module (Unified)
+--------------------------*/
+
+.shadow-module {
+  position: relative;
+  display: inline-block; /* shrink to fit the button */
+  border-radius: 10px;
+  z-index: 0; /* keeps shadow behind the button */
+}
+
+.shadow-module::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: linear-gradient(90deg, #b23a1f 0%, #d01dbd 100%);
+  border-radius: 40px;
+  z-index: -1;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  filter: blur(20px);
+  opacity: 0; /* hidden until scroll or hover */
+  pointer-events: none;
+}
+
+/* Hover + Scroll activated glow (optional JavaScript support) */
+.shadow-module:hover::before,
+.shadow-module.glow-active::before {
+  opacity: 0.8;
+  filter: blur(30px);
+}
+
+/* Ensure content (button or event-card) sits above glow */
+.shadow-module > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Specific event-card inside shadow-module */
+.shadow-module > .event-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shadow-module > .event-card:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2),
+              0 8px 16px rgba(0, 0, 0, 0.15);
+}

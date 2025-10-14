@@ -2,65 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Draw Only</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: black;
-      height: 100%;
-    }
-
-    canvas {
-      display: block;
-      background: black;
-      cursor: crosshair;
-    }
-  </style>
+  <title>Infinite Chalkboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div id="toolbar">
+    <div class="shadow-module">
+      <button onclick="saveAsPDF()">Save as PDF</button>
+    </div>
+  </div>
+
   <canvas id="drawCanvas"></canvas>
 
-  <script>
-    const canvas = document.getElementById('drawCanvas');
-    const ctx = canvas.getContext('2d');
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
 
-    // Resize canvas to full window size
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Drawing settings
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-
-    let drawing = false;
-
-    canvas.addEventListener('mousedown', (e) => {
-      drawing = true;
-      ctx.beginPath();
-      ctx.moveTo(e.clientX, e.clientY);
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      if (!drawing) return;
-      ctx.lineTo(e.clientX, e.clientY);
-      ctx.stroke();
-    });
-
-    canvas.addEventListener('mouseup', () => {
-      drawing = false;
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-      drawing = false;
-    });
-  </script>
 </body>
 </html>
