@@ -29,7 +29,7 @@ body {
 /* === Mac Window Frame === */
 .mac-window {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   background: #1e1e2e;
   border-radius: 10px;
   overflow: hidden;
@@ -62,7 +62,6 @@ body {
 /* === Banner === */
 .banner-text {
   margin-bottom: 2rem;
-  /* text-align: center; */
 }
 .banner-text h1 {
   font-size: 2rem;
@@ -84,6 +83,8 @@ h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #B5BFE2;
+  border-left: 4px solid #8CAAEE;
+  padding-left: 10px;
 }
 
 /* === Paragraphs === */
@@ -98,29 +99,144 @@ ul.social {
   list-style: none;
   padding: 0;
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 ul.social li {
-  margin-bottom: 0.5rem;
+  margin: 0;
 }
 
 ul.social a {
   color: #a6d189;
-  /* font-weight: bold; */
   text-decoration: none;
+  transition: color 0.3s ease;
 }
-
 ul.social a:hover {
   color: #8CAAEE;
 }
 
-/* === Footer === */
-footer,
-.mac-content > p:last-of-type {
-  margin-top: 2rem;
-  color: #B5BFE2;
-  font-size: 0.95rem;
+/* === Section Spacing === */
+section {
+  margin-bottom: 3rem;
+}
+
+/* === Skills Grid === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.skills-grid li {
+  background: #2e2e38;
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 8px;
   text-align: center;
+  color: #c6d0f5;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.skills-grid li:hover {
+  background: #3a3a4a;
+  transform: scale(1.03);
+}
+
+/* === Certifications === */
+.cert-list {
+  list-style: none;
+  padding: 0;
+}
+.cert-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #444;
+}
+
+/* === Projects === */
+.project-card {
+  background: #2e2e38;
+  border-radius: 8px;
+  border: 1px solid #444;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.project-card h3 {
+  color: #f2d5cf;
+  margin-bottom: 0.5rem;
+}
+.project-card p {
+  color: #c6d0f5;
+}
+.project-card a {
+  color: #8CAAEE;
+  font-weight: bold;
+  text-decoration: none;
+}
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* === Experience === */
+.job {
+  margin-bottom: 1.2rem;
+}
+.job h3 {
+  color: #f2d5cf;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.job span {
+  color: #8CAAEE;
+  font-size: 0.9rem;
+}
+.job p {
+  color: #c6d0f5;
+}
+
+/* === Education & Volunteering === */
+#education ul,
+#volunteering ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+}
+#education li,
+#volunteering li {
+  margin-bottom: 0.6rem;
+}
+
+/* === Contact Section === */
+#contact {
+  text-align: center;
+}
+#contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+#contact ul li {
+  margin: 0.4rem 0;
+}
+#contact a {
+  text-decoration: none;
+  color: #a6d189;
+}
+#contact a:hover {
+  color: #8CAAEE;
+}
+
+/* === Footer === */
+footer {
+  margin-top: 3rem;
+  color: #B5BFE2;
+  font-size: 0.9rem;
+  text-align: center;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
 }
 
 /* === Animations === */
@@ -153,20 +269,30 @@ footer,
   50% { border-color: transparent; }
 }
 
-/* === Utility Classes === */
+/* === Utility === */
 .text-secondary { color: #8CAAEE; }
 .text-background { color: #B5BFE2; }
 .cursor { color: #f2d5cf; }
 
-/* === Responsive Text Scaling === */
-@media (min-width: 600px) {
+/* === Responsive Layout === */
+@media (max-width: 768px) {
   body {
-    font-size: 1.125rem;
+    padding: 1rem;
+  }
+  .mac-content {
+    padding: 1.5rem;
   }
   .banner-text h1 {
-    font-size: 2.5rem;
+    font-size: 1.7rem;
+    text-align: center;
   }
   h2 {
-    font-size: 1.75rem;
+    font-size: 1.3rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  ul.social {
+    justify-content: center;
   }
 }
