@@ -7,16 +7,45 @@ html, body {
   height: 100%;
 }
 
+@media (max-width: 480px) {
+  #toolbar {
+    flex-direction: column;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+  }
+  #toolbar .shadow-module + .shadow-module {
+    margin-top: 15px;
+  }
+}
+
+#toolbar .shadow-module + .shadow-module {
+  margin-top: 15px;
+}
+
 /* Toolbar positioning */
 #toolbar {
   position: fixed;
-  top: 20px;   /* move down — tweak as needed */
-  left: 20px; /* move right — tweak as needed */
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
   font-family: monospace;
-  width: 220px;
+  padding: 0 10px;
+  gap: 15px;            /* Space between each button */
+  background: transparent; /* (optional) clear background */
 }
 
+/* Optional: If you want buttons stacked vertically instead */
+#toolbar.vertical {
+  flex-direction: column;
+  gap: 15px;
+}
+
+#drawCanvas {
+  cursor: crosshair; /* or use any built-in cursor or custom icon */
+}
 /* Button styling inside the toolbar */
 #toolbar button {
   background-color: white;

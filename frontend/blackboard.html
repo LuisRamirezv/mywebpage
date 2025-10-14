@@ -7,11 +7,17 @@
 </head>
 <body>
 
-  <div id="toolbar">
-    <div class="shadow-module">
-      <button onclick="saveAsPDF()">Save as PDF</button>
-    </div>
+<div id="toolbar">
+  <div class="shadow-module">
+    <button onclick="saveAsPDF()">Save as PDF</button>
   </div>
+  <div class="shadow-module" style="margin-top: 15px;">
+    <button onclick="undoDraw()">Undo</button>
+  </div>
+  <div class="shadow-module" style="margin-top: 15px;">
+    <button onclick="clearBoard()">Clear Board</button>
+  </div>
+</div>
 
   <canvas id="drawCanvas"></canvas>
 
@@ -20,3 +26,4 @@
 
 </body>
 </html>
+
