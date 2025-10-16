@@ -22,3 +22,16 @@ const getVisitCount = () => {
     return count;
 
 }
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  getVisitCount();
+
+  // Bounce all badges when DOM is loaded
+  const badges = document.querySelectorAll('.badge-bounce');
+  badges.forEach((badge, index) => {
+    setTimeout(() => {
+      badge.classList.add('badge-bounce');
+    }, index * 100); // stagger the bounce effect slightly
+  });
+});
+

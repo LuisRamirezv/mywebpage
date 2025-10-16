@@ -122,56 +122,59 @@ section {
   margin-bottom: 3rem;
 }
 
-/* === Skills Grid === */
+/* === Skills Grid (Uniform Boxes) === */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   list-style: none;
   padding: 0;
+  justify-content: center;
 }
 
-.skills-grid li {
+.skills-grid .shadow-module {
+  width: 220px;
+  height: 60px;
   background: #2e2e38;
-  padding: 1rem;
+  border-radius: 12px;
   border: 1px solid #444;
-  border-radius: 10px;
-  text-align: center;
   color: #c6d0f5;
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: center;
   transition: transform 0.2s ease, background 0.3s ease;
-}
-
-/* Glow layer for skills */
-.skills-grid li::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  /* background: linear-gradient(90deg, #b23a1f 0%, #d01dbd 100%); */
-  border-radius: 40px;
-  z-index: -1;
-  transition: filter 0.3s ease, opacity 0.3s ease;
-  filter: blur(20px);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.skills-grid li:hover::before {
-  opacity: 0.8;
-  filter: blur(30px);
-}
-
-.skills-grid li > * {
   position: relative;
   z-index: 1;
+  overflow: hidden;
+  padding: 0 0.5rem;
 }
 
-.skills-grid li:hover {
+/* Glow effect on hover */
+.skills-grid .shadow-module::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: linear-gradient(90deg, #b23a1f 0%, #d01dbd 100%);
+  border-radius: 20px;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.skills-grid .shadow-module:hover::before {
+  opacity: 0.75;
+  filter: blur(18px);
+}
+
+.skills-grid .shadow-module:hover {
   background: #3a3a4a;
   transform: scale(1.05);
 }
@@ -241,23 +244,39 @@ section {
 }
 
 /* === Contact Section === */
-#contact {
+#contact ul.social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+#contact ul.social li {
+  margin: 0;
+}
+/* Style links as gradient pill buttons with glow */
+#contact ul.social a {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: linear-gradient(90deg, #b23a1f, #d01dbd);
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 15px rgba(208, 29, 189, 0.3);
+  font-size: 1rem;
   text-align: center;
 }
-#contact ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-#contact ul li {
-  margin: 0.4rem 0;
-}
-#contact a {
-  text-decoration: none;
-  color: #a6d189;
-}
-#contact a:hover {
-  color: #8CAAEE;
+
+/* Hover effects for buttons */
+#contact ul.social a:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(208, 29, 189, 0.6);
+  color: white;
 }
 
 /* === Footer === */
@@ -419,7 +438,7 @@ button:active, .btn:active {
 }
 
 #contact ul.social a {
-  color: #a6d189;
+  /* color: #a6d189; */
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease, transform 0.2s ease;
@@ -447,6 +466,30 @@ button:active, .btn:active {
   box-shadow: 0 0 25px rgba(208, 29, 189, 0.6);
 }
 
+/* === Bouncy Badge Animation === */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9) translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.badge-bounce {
+  animation: bounceIn 0.8s ease-out;
+  transition: transform 0.3s ease;
+}
+
+.badge-bounce:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
 
 /* === Responsive Layout === */
 @media (max-width: 768px) {
@@ -464,7 +507,8 @@ button:active, .btn:active {
     font-size: 1.3rem;
   }
   .skills-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
   ul.social {
     justify-content: center;
