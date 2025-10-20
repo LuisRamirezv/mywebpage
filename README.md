@@ -17,9 +17,3 @@ Welcome to my personal resume project! In this project, I built a resume webpage
   - **Blob Storage** for static files
   - **Azure Functions** for serverless logic
   - **CosmosDB** for dynamic, serverless database
-
-## Setup
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/ACG-Project-Resume-Azure.git
