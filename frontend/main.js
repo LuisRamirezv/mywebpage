@@ -1,37 +1,76 @@
-window.addEventListener('DOMContentLoaded',(event) => { //When the content is loaded go and run this event
-    getVisitCount();
-})
+window.addEventListener('DOMContentLoaded', () => {
+  // 1. Run line-by-line typing reveal
+  typeLineByLine();
 
-const functionApiUrl = 'https://getresumecounterweb.azurewebsites.net/api/GetResumeCounter?code=7gVzmgzs2j85aLXc3erxe9TpsNVXlFqolML1jIxRKBXuAzFuSt58YQ%3D%3D';
-const localFunctionApi = 'http://localhost:7071/api/GetResumeCounter';
-
-const getVisitCount = () => {
-    let count = 30; // This variable is has a value but only for the begining
-
-    fetch(functionApiUrl).then(response => {
-        return response.json()
-    }).then(response =>{
-
-        console.log("Website called function API.");
-        count = response.count; // the count variable are going to store the value that json response 
-        document.getElementById("counter").innerText = count; // Then go into thge document, find the counter ID , take the innertext and change by the new value from the response
-
-    }).catch(function(error){
-        console.log(error);
-    });
-    return count;
-
-}
-
-window.addEventListener('DOMContentLoaded', (event) => {
+  // 2. Fetch Visitor Count
   getVisitCount();
 
-  // Bounce all badges when DOM is loaded
+  // 3. Bounce Badges
   const badges = document.querySelectorAll('.badge-bounce');
   badges.forEach((badge, index) => {
     setTimeout(() => {
       badge.classList.add('badge-bounce');
-    }, index * 100); // stagger the bounce effect slightly
+    }, index * 100);
   });
 });
 
+// Azure Function Visitor Counter API
+const functionApiUrl = 'https://getresumecounterweb.azurewebsites.net/api/GetResumeCounter?code=7gVzmgzs2j85aLXc3erxe9TpsNVXlFqolML1jIxRKBXuAzFuSt58YQ%3D%3D';
+
+const getVisitCount = () => {
+  let count = 30;
+
+  fetch(functionApiUrl)
+    .then(response => response.json())
+    .then(data => {
+      console.log("Website called function API.");
+      count = data.count;
+      const counterEl = document.getElementById("counter");
+      if (counterEl) {
+        counterEl.innerText = count;
+      }
+    })
+    .catch(error => {
+      console.error("Visitor Counter API Error:", error);
+    });
+
+  return count;
+};
+
+// Precise Line-by-Line Printing Effect
+const typeLineByLine = () => {
+  // Target every individual line/element inside the output blocks
+  const selectors = [
+    '.frame-container',
+    '.banner-text p',
+    '.prompt-line',
+    '.ios-output > p',
+    '.table-header',
+    '.table-row'
+  ];
+
+  const lines = document.querySelectorAll(selectors.join(', '));
+
+  // Hide all lines initially
+  lines.forEach(line => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateY(2px)';
+    line.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+  });
+
+  // Print each line sequentially with a delay
+  const lineDelay = 80; // Delay in milliseconds between each line
+
+  lines.forEach((line, index) => {
+    setTimeout(() => {
+      line.style.opacity = '1';
+      line.style.transform = 'translateY(0)';
+      
+      // Auto-scroll to the bottom as new lines print
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, index * lineDelay);
+  });
+};
