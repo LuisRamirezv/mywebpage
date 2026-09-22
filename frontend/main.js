@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // 1. Run line-by-line typing reveal
+  // 1. Run line-by-line typing reveal without scrolling
   typeLineByLine();
 
   // 2. Fetch Visitor Count
@@ -37,10 +37,13 @@ const getVisitCount = () => {
   return count;
 };
 
-// Precise Line-by-Line Printing Effect
+// Line-by-Line Printing (Anchored to top)
 const typeLineByLine = () => {
-  // Target every individual line/element inside the output blocks
+  // Ensure the browser always stays pinned to the top on page load
+  window.scrollTo(0, 0);
+
   const selectors = [
+    '.copilot-header',
     '.frame-container',
     '.banner-text p',
     '.prompt-line',
@@ -51,26 +54,18 @@ const typeLineByLine = () => {
 
   const lines = document.querySelectorAll(selectors.join(', '));
 
-  // Hide all lines initially
+  // Hide lines initially
   lines.forEach(line => {
     line.style.opacity = '0';
-    line.style.transform = 'translateY(2px)';
-    line.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+    line.style.transition = 'opacity 0.12s ease';
   });
 
-  // Print each line sequentially with a delay
-  const lineDelay = 80; // Delay in milliseconds between each line
+  // Reveal sequentially
+  const lineDelay = 60;
 
   lines.forEach((line, index) => {
     setTimeout(() => {
       line.style.opacity = '1';
-      line.style.transform = 'translateY(0)';
-      
-      // Auto-scroll to the bottom as new lines print
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-      });
     }, index * lineDelay);
   });
 };
